@@ -45,3 +45,35 @@
 > tips:在平移过程中top和left始终为原始位置左上角的信息.此时发生变化的是x、y、translationX和translationY.
 
 > 如想要view不断移动需要不断加大translationX或translationY的值.
+
+
+###1.3 MotionEvent和ThouchSlop
+> 1,MotionEvent : 
+> 
+> 手指触摸事件中,典型事件类型如下
+> 
+> - ACTION_DOWN : 手指触摸按下时
+> 
+> - ACTION_MOVE : 手指在屏幕上以活动
+> 
+> - ACTION_UP : 手指在屏幕上松开一瞬间.
+
+> 正常情况下,一次手指触摸屏幕的行为所触发的一系列点击事件:
+
+> - 点击松开:DOWN - > UP
+> - 点击滑动松开 : DOWN - > MOVE.....MOVE - > UP
+
+> 通过MotionEvent对象可以获得点击事件发生的x和y坐标.
+
+> 系统提供了两种获取坐标的方法
+
+> - getX / getY : 返回相对于当前View的x和y的坐标.
+> - getRawX / getRawY : 返回相对于手机屏幕的坐标.
+
+> 2,TouchSlop:
+
+> - 系统所能识别出的被认为是滑动的最小距离.
+> - 两次滑动的距离小于这个常量,系统不认为是在滑动操作.
+> - 这是一个常量,和设备有关,不同设备上的值可能不同.
+> - 通过ViewConfiguration.get(getContext().getScaledThouchSlop());获取.
+> - 两次滑动事件的距离小于这个值,可以认为没有达到滑动的临界值.
